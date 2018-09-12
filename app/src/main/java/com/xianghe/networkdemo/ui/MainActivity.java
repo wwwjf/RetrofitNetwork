@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 //        mTextViewResult = (TextView) findViewById(R.id.textView_result);
         NetworkServiceUtil.movieList("new", new OnRequestListener<List<MovieBean>>() {
             @Override
-            public void onResponse(List<MovieBean> entity) {
+            public void onResponse(List<MovieBean> entity,String msg) {
                 ToastUtils.showShort("请求成功");
 //                mTextViewResult.setText("请求成功");
                 for (MovieBean movieBean : entity) {

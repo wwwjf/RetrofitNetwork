@@ -36,17 +36,18 @@ public abstract class RequestCallBack implements Callback<BaseResponse> {
 
     /**
      * 处理应答
+     *
      * @param response 应答实体
      */
     private void handleResponse(BaseResponse response) {
         try {
-            if (response.getStatus() == 0){
+            if (response.getStatus() == 0) {
                 onError(response.getInfo());
                 return;
             }
             if (response.getStatus() == 1) {
                 // 请求成功才处理数据
-                onDataObtain(GsonHelper.object2JsonStr(response.getData()));
+                onDataObtain(GsonHelper.object2JsonStr(response.getData()),response.getInfo());
             } else {
                 onError("新增的status值,请处理");
             }
@@ -61,13 +62,16 @@ public abstract class RequestCallBack implements Callback<BaseResponse> {
 
     /**
      * 获取json数据
+     *
      * @param jsonData json字符串
+     * @param msg
      * @return
      */
-    protected abstract void onDataObtain(String jsonData);
+    protected abstract void onDataObtain(String jsonData, String msg);
 
     /**
      * 获取错误数据
+     *
      * @param errMsg 错误数据
      */
     protected abstract void onError(String errMsg);

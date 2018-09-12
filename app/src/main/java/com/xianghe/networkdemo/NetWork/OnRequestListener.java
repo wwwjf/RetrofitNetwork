@@ -8,8 +8,9 @@ public interface OnRequestListener<T> {
     /**
      * 获取请求实体数据
      * @param entity 实体
+     * @param msg
      */
-    void onResponse(T entity);
+    void onResponse(T entity,String msg);
 
     /**
      * 请求失败

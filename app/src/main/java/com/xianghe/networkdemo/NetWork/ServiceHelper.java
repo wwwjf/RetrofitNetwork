@@ -30,7 +30,7 @@ public final class ServiceHelper {
                                       final OnRequestListener<T> listener) {
         call.enqueue(new RequestCallBack() {
             @Override
-            protected void onDataObtain(String jsonData) {
+            protected void onDataObtain(String jsonData,String msg) {
                 T info = GsonHelper.convertEntity(jsonData, entityClass);
                 if (info == null) {
                     if (listener != null) {
@@ -38,7 +38,7 @@ public final class ServiceHelper {
                     }
                 } else {
                     if (listener != null) {
-                        listener.onResponse(info);
+                        listener.onResponse(info,msg);
                     }
                 }
             }
@@ -63,7 +63,7 @@ public final class ServiceHelper {
                                         final OnRequestListener<List<T>> listener) {
         call.enqueue(new RequestCallBack() {
             @Override
-            protected void onDataObtain(String jsonData) {
+            protected void onDataObtain(String jsonData,String msg) {
                 Log.e(TAG, "onDataObtain");
                 List<T> infos = GsonHelper.convertEntities(jsonData, entityClass);
                 if (infos == null) {
@@ -74,7 +74,7 @@ public final class ServiceHelper {
                 } else {
                     if (listener != null) {
                         Log.e(TAG, "onDataObtain: ");
-                        listener.onResponse(infos);
+                        listener.onResponse(infos,msg);
                     }
                 }
             }
